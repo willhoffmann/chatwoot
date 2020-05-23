@@ -91,12 +91,12 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import { required } from 'vuelidate/lib/validators';
 import { mapGetters } from 'vuex';
 import { accountIdFromPathname } from 'dashboard/helper/URLHelper';
 import alertMixin from 'shared/mixins/alertMixin';
 import configMixin from 'shared/mixins/configMixin';
+import { i18n } from '../../../../../packs/application';
 
 export default {
   mixins: [alertMixin, configMixin],
@@ -155,7 +155,7 @@ export default {
           features,
         } = this.getAccount(accountId);
 
-        Vue.config.lang = locale;
+        i18n.locale = locale;
         this.name = name;
         this.locale = locale;
         this.id = id;
@@ -180,7 +180,7 @@ export default {
           support_email: this.supportEmail,
           domain_emails_enabled: this.domainEmailsEnabled,
         });
-        Vue.config.lang = this.locale;
+        i18n.locale = this.locale;
         this.showAlert(this.$t('GENERAL_SETTINGS.UPDATE.SUCCESS'));
       } catch (error) {
         this.showAlert(this.$t('GENERAL_SETTINGS.UPDATE.ERROR'));
